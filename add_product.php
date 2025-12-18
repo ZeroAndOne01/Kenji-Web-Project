@@ -561,7 +561,6 @@ body {
         }
       });
       
-      // Check price validity
       const priceField = form.querySelector('input[name="price"]');
       if (priceField.value && parseFloat(priceField.value) <= 0) {
         priceField.classList.add('is-invalid');
@@ -572,13 +571,13 @@ body {
         e.preventDefault();
         showToast('Please fill in all required fields correctly.', 'error');
       } else {
-        // Show loading state
+
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Adding Product...';
         submitBtn.disabled = true;
       }
     });
     
-    // Add real-time validation
+
     form.querySelectorAll('input, textarea').forEach(field => {
       field.addEventListener('input', function() {
         if (this.classList.contains('is-invalid')) {
@@ -587,7 +586,7 @@ body {
       });
     });
     
-    // Character counter for description
+
     const descriptionField = form.querySelector('textarea[name="description"]');
     const descriptionCounter = document.createElement('small');
     descriptionCounter.className = 'form-text d-block mt-1 text-end';
@@ -601,18 +600,18 @@ body {
       descriptionCounter.style.color = length > 450 ? '#ffc107' : 'rgba(242, 228, 183, 0.6)';
     });
     
-    // Trigger initial count
+
     descriptionField.dispatchEvent(new Event('input'));
   });
   
-  // Category helper function
+
   function setCategory(category) {
     const categoryInput = document.getElementById('categoryInput');
     categoryInput.value = category;
     categoryInput.focus();
   }
   
-  // Image preview function
+
   function previewImage(event) {
     const input = event.target;
     const preview = document.getElementById('previewImage');
@@ -628,15 +627,15 @@ body {
       
       reader.readAsDataURL(input.files[0]);
       
-      // Validate file size
-      if (input.files[0].size > 5000000) { // 5MB
+
+      if (input.files[0].size > 5000000) { 
         showToast('File size exceeds 5MB limit. Please choose a smaller image.', 'error');
         removeImage();
       }
     }
   }
   
-  // Remove image function
+
   function removeImage() {
     const fileInput = document.getElementById('productImage');
     const previewContainer = document.getElementById('imagePreview');
@@ -645,7 +644,7 @@ body {
     previewContainer.style.display = 'none';
   }
   
-  // Toast notification function
+
   function showToast(message, type = 'info') {
     const toast = document.createElement('div');
     toast.className = `toast align-items-center text-white bg-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'} border-0`;
@@ -691,7 +690,6 @@ body {
   'Black Sesame Kinako Milk'
 ];
   
-  // Auto-suggest product name on focus
   const nameInput = document.querySelector('input[name="name"]');
   nameInput.addEventListener('focus', function() {
     if (!this.value) {
@@ -701,4 +699,5 @@ body {
   });
 </script>
 </body>
+
 </html>
